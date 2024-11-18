@@ -1,0 +1,13 @@
+diff --git a/tclpkg/gv/CMakeLists.txt b/tclpkg/gv/CMakeLists.txt
+index c07c71c68..e8c769b30 100644
+--- a/tclpkg/gv/CMakeLists.txt
++++ b/tclpkg/gv/CMakeLists.txt
+@@ -10,7 +10,7 @@ if(ENABLE_SWIG)
+       SOURCES gv.cpp gv.i gv_builtins.c gv_dummy_init.c
+     )
+     target_compile_definitions(gv_sharp PRIVATE DEMAND_LOADING=1)
+-    set_property(TARGET gv_sharp PROPERTY SWIG_COMPILE_OPTIONS -namespace)
++    set_property(TARGET gv_sharp PROPERTY SWIG_COMPILE_OPTIONS -namespace GraphVizard.Interop)
+     target_link_libraries(gv_sharp PRIVATE cdt cgraph gvc)
+ 
+     get_property(gv_sharp_support
