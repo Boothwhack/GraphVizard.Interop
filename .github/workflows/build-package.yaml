@@ -1,8 +1,8 @@
 name: Build and publish package
 on:
-  push: 
-    tags:
-      - "*"
+  push:
+    branches:
+      - main
 
 jobs:
   build-graphviz-linux64:
