@@ -16,7 +16,7 @@ jobs:
         with:
           packages: swig
       - name: Build GraphViz library 
-        run: build-graphviz.sh
+        run: ./build-graphviz.sh
       - uses: actions/upload-artifact@v4
         with:
           name: graphviz-linux-x64
