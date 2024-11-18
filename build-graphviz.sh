@@ -25,5 +25,6 @@ cmake --install "$build_dir" --prefix "$prefix_dir"
 
 # Copy generated CSharp code and glue library into project directory
 echo "Copying generated files into: $output_dir"
+mkdir -p "$output_src_dir" "$output_lib_dir"
 cp "$prefix_dir/lib/graphviz/sharp/"*.cs "$output_src_dir"
 cp "$prefix_dir/lib/graphviz/sharp/"*.so "$output_lib_dir"
