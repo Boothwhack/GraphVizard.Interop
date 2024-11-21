@@ -5,8 +5,9 @@ $OutputDir = "$PSScriptRoot\dist"
 $OutputSrcDir = "$OutputDir\src"
 $OutputLibDir = "$OutputDir\lib"
 
-# Add directory containing Flex and Bison to PATH
-$Env:PATH += ";$SourceDir\windows\dependencies\graphviz-build-utilities"
+# Set up Graphviz Windows build utilities
+Set-ExecutionPolicy Bypass -Force -Scope Process
+. $SourceDir\windows\bin\setup-build-utilities.ps1
 
 pushd "$SourceDir"
 # Apply patch to generate CSharp code in GraphVizard.Interop namespace
