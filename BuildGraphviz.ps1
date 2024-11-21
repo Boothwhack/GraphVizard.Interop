@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+
 $SourceDir = "$PSScriptRoot\graphviz"
 $BuildDir = "$SourceDir\build"
 $PrefixDir = "$SourceDir\install"
