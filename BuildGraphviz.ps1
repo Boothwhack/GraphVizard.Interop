@@ -14,7 +14,7 @@ Set-ExecutionPolicy Bypass -Force -Scope Process
 Write-Output "Path: $Env:PATH"
 
 # Remove invalid gdlib-config executable from path
-$Env:PATH = ( $Env:PATH.Split(';') | Where-Object { $_ -ne C:/Strawberry/c/bin } ) -join ';'
+$Env:PATH = ( $Env:PATH.Split(';') | Where-Object { $_ -ne "C:/Strawberry/c/bin" } ) -join ';'
 
 Write-Output "Modified path: $Env:PATH"
 
