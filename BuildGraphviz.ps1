@@ -28,7 +28,7 @@ cmake -S "$SourceDir" -B "$BuildDir" `
 
 
 # Build Graphviz library
-cmake --build "$BuildDir"
+cmake --build "$BuildDir" --config Release
 
 tree "$BuildDir" /f
 
