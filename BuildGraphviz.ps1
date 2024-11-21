@@ -19,7 +19,13 @@ popd
 # Configure Graphviz build
 cmake -S "$SourceDir" -B "$BuildDir" `
     -DENABLE_SWIG=true `
-    -DENABLE_SHARP=true
+    -DENABLE_SHARP=true `
+    # Options copied from https://gitlab.com/graphviz/graphviz/-/blob/5b4763bc71b78037a1628c5280104e66c8bf007a/ci/windows_build.py
+    -DENABLE_LTDL=ON `
+    -DWITH_EXPAT=ON `
+    -DWITH_GVEDIT=OFF `
+    -DWITH_ZLIB=ON 
+
 
 # Build Graphviz library
 cmake --build "$BuildDir"
