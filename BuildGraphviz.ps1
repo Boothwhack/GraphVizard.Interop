@@ -11,13 +11,6 @@ $OutputLibDir = "$OutputDir\lib"
 Set-ExecutionPolicy Bypass -Force -Scope Process
 . $SourceDir\windows\bin\setup-build-utilities.ps1
 
-Write-Output "Path: $Env:PATH"
-
-# Remove invalid gdlib-config executable from path
-$Env:PATH = ( $Env:PATH.Split(';') | Where-Object { $_ -ne "C:/Strawberry/c/bin" } ) -join ';'
-
-Write-Output "Modified path: $Env:PATH"
-
 
 pushd "$SourceDir"
 # Apply patch to generate CSharp code in GraphVizard.Interop namespace
