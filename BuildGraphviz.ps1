@@ -11,17 +11,16 @@ $OutputLibDir = "$OutputDir\lib"
 Set-ExecutionPolicy Bypass -Force -Scope Process
 . $SourceDir\windows\bin\setup-build-utilities.ps1
 
-
 pushd "$SourceDir"
 # Apply patch to generate CSharp code in GraphVizard.Interop namespace
 git apply ..\graphviz-namespace.patch
 popd
 
 # Configure Graphviz build
+# Options copied from https://gitlab.com/graphviz/graphviz/-/blob/5b4763bc71b78037a1628c5280104e66c8bf007a/ci/windows_build.py
 cmake -S "$SourceDir" -B "$BuildDir" `
     -DENABLE_SWIG=true `
     -DENABLE_SHARP=true `
-    # Options copied from https://gitlab.com/graphviz/graphviz/-/blob/5b4763bc71b78037a1628c5280104e66c8bf007a/ci/windows_build.py
     -DENABLE_LTDL=ON `
     -DWITH_EXPAT=ON `
     -DWITH_GVEDIT=OFF `
