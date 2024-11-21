@@ -30,6 +30,8 @@ cmake -S "$SourceDir" -B "$BuildDir" `
 # Build Graphviz library
 cmake --build "$BuildDir"
 
+tree "$BuildDir" /f
+
 # Install built DLL and CSharp files into prefix
 cmake --install "$BuildDir" --prefix "$PrefixDir"
 
