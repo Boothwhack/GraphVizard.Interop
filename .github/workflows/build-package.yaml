@@ -21,3 +21,16 @@ jobs:
         with:
           name: graphviz-linux-x64
           path: dist
+  build-graphviz-win64:
+    name: Build GraphViz for Windows x64
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: "recursive"
+      - name: Build GraphViz library
+        run: .\BuildGraphviz.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: graphviz-windows-x64
+          path: dist
