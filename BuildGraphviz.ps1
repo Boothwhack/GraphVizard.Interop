@@ -5,8 +5,10 @@ $OutputDir = "$PSScriptRoot\dist"
 $OutputSrcDir = "$OutputDir\src"
 $OutputLibDir = "$OutputDir\lib"
 
+pushd "$SourceDir"
 # Apply patch to generate CSharp code in GraphVizard.Interop namespace
-git apply --directory "$SourceDir" graphviz-namespace.patch
+git apply ..\graphviz-namespace.patch
+popd
 
 # Configure Graphviz build
 cmake -S "$SourceDir" -B "$BuildDir" `
