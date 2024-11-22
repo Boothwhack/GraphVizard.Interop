@@ -8,7 +8,7 @@
         <GraphVizVersion>12.2.0</GraphVizVersion>
         <GraphVizWin64Hash>1f16f1bcb4087096de0065e2b872f0e925437c93f4c7ba145d38dcdc853334e5</GraphVizWin64Hash>
 
-        <Version>$(GraphVizVersion).1</Version>
+        <Version>$(GraphVizVersion).2</Version>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>CPL-1.0</PackageLicenseExpression>
     </PropertyGroup>
