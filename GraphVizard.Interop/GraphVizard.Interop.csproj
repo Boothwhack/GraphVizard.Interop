@@ -4,12 +4,17 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>12.2.0.1</Version>
-        <PackageReadmeFile>../README.md</PackageReadmeFile>
+
+        <GraphVizVersion>12.2.0</GraphVizVersion>
+        <GraphVizWin64Hash>1f16f1bcb4087096de0065e2b872f0e925437c93f4c7ba145d38dcdc853334e5</GraphVizWin64Hash>
+
+        <Version>$(GraphVizVersion).1</Version>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseExpression>CPL-1.0</PackageLicenseExpression>
     </PropertyGroup>
-    
+
     <ItemGroup>
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
         <None Include="lib/*.dll" Pack="true" PackagePath="runtimes/win-x64/native/" />
         <None Include="lib/*.so" Pack="true" PackagePath="runtimes/linux-x64/native/" />
     </ItemGroup>
@@ -24,5 +29,5 @@
             <None Include="$(IntermediateOutputPath)Graphviz-$(GraphVizVersion)-win64/bin/config6" Pack="true" PackagePath="runtimes/win-x64/native/" />
         </ItemGroup>
     </Target>
-    
+
 </Project>
