@@ -54,7 +54,6 @@ jobs:
           path: GraphVizard.Interop
           pattern: graphviz-*
           merge-multiple: "true"
-      - run: tree GraphVizard.Interop
       - run: dotnet pack -o pkg
       - uses: actions/upload-artifact@v4
         with:
