@@ -53,7 +53,7 @@ jobs:
         with:
           path: GraphVizard.Interop
           pattern: graphviz-*
-      - run: tree GraphVizard.Interop /f /a
+      - run: tree GraphVizard.Interop
       - run: dotnet pack -o pkg
       - uses: actions/upload-artifact@v4
         with:
