@@ -10,7 +10,9 @@ output_src_dir="$output_dir/src"
 output_lib_dir="$output_dir/lib"
 
 # Apply patch to generate CSharp code in GraphVizard.Interop namespace
-git apply --directory "$source_dir" graphviz-namespace.patch || true
+pushd "$source_dir"
+git apply ../graphviz-namespace.patch || true
+popd
 
 # Configure Graphviz build
 cmake -S "$source_dir" -B "$build_dir" \
