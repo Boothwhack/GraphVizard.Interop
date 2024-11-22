@@ -4,6 +4,25 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Version>12.2.0.1</Version>
+        <PackageReadmeFile>../README.md</PackageReadmeFile>
+        <PackageLicenseExpression>CPL-1.0</PackageLicenseExpression>
     </PropertyGroup>
+    
+    <ItemGroup>
+        <None Include="lib/*.dll" Pack="true" PackagePath="runtimes/win-x64/native/" />
+        <None Include="lib/*.so" Pack="true" PackagePath="runtimes/linux-x64/native/" />
+    </ItemGroup>
 
+    <Target Name="PrepareGraphvizWin64" BeforeTargets="Build">
+        <DownloadFile DestinationFolder="$(IntermediateOutputPath)" SourceUrl="https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/$(GraphVizVersion)/windows_10_cmake_Release_Graphviz-$(GraphVizVersion)-win64.zip" DestinationFileName="Graphviz-$(GraphVizVersion)-win64.zip" />
+        <VerifyFileHash File="$(IntermediateOutputPath)Graphviz-$(GraphVizVersion)-win64.zip" Hash="$(GraphVizWin64Hash)" />
+        <Unzip DestinationFolder="$(IntermediateOutputPath)" SourceFiles="$(IntermediateOutputPath)Graphviz-$(GraphVizVersion)-win64.zip" />
+
+        <ItemGroup>
+            <None Include="$(IntermediateOutputPath)Graphviz-$(GraphVizVersion)-win64/bin/*.dll" Pack="true" PackagePath="runtimes/win-x64/native/" />
+            <None Include="$(IntermediateOutputPath)Graphviz-$(GraphVizVersion)-win64/bin/config6" Pack="true" PackagePath="runtimes/win-x64/native/" />
+        </ItemGroup>
+    </Target>
+    
 </Project>
