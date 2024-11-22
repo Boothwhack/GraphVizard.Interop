@@ -4,7 +4,6 @@ $SourceDir = "$PSScriptRoot\graphviz"
 $BuildDir = "$SourceDir\build"
 $PrefixDir = "$SourceDir\install"
 $OutputDir = "$PSScriptRoot\dist"
-$OutputSrcDir = "$OutputDir\src"
 $OutputLibDir = "$OutputDir\lib"
 
 # Set up Graphviz Windows build utilities
@@ -35,6 +34,5 @@ cmake --install "$BuildDir" --prefix "$PrefixDir"
 
 # Copy generated CSharp code and glue library into project directory
 Write-Output "Copying generated files into: $OutputDir"
-md "$OutputSrcDir", "$OutputLibDir" -ea 0 | Out-Null
-copy -Path "$PrefixDir\lib\graphviz\sharp\*.cs" -Destination "$OutputSrcDir"
+md "$OutputLibDir" -ea 0 | Out-Null
 copy -Path "$PrefixDir\lib\graphviz\sharp\*.dll" -Destination "$OutputLibDir"
