@@ -40,6 +40,9 @@ jobs:
   publish-package:
     name: Build and publishes NuGet package
     runs-on: ubuntu-22.04
+    needs: 
+      - build-graphviz-linux64
+      - build-graphviz-win64
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
