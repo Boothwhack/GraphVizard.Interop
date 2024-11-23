@@ -6,7 +6,7 @@ source_dir="$PWD/graphviz"
 build_dir="$source_dir/build"
 prefix_dir="$source_dir/install"
 output_dir="$PWD/dist"
-output_src_dir="$output_dir/src"
+output_src_dir="$output_dir/gen"
 output_lib_dir="$output_dir/lib"
 
 # Apply patch to generate CSharp code in GraphVizard.Interop namespace
