@@ -4,7 +4,7 @@ namespace GraphVizard.Interop;
 
 public static class Extensions
 {
-    public static IntPtr AGDATA(SWIGTYPE_p_Agraph_t n)
+    public static IntPtr AGDATA(SWIGTYPE_p_Agnode_t n)
     {
         /*
          * Imitates C macro: #define AGDATA(obj) (((Agobj_t *)(obj))->data)
@@ -12,10 +12,10 @@ public static class Extensions
          * offsetof(Agobj_s, Agobj_s::data) == 16
          */
 
-        return SWIGTYPE_p_Agraph_t.getCPtr(n).Handle + 16;
+        return SWIGTYPE_p_Agnode_t.getCPtr(n).Handle + 16;
     }
 
-    public static Position ND_coord(SWIGTYPE_p_Agraph_t n)
+    public static Position ND_coord(SWIGTYPE_p_Agnode_t n)
     {
         /*
          * Imitates C macro: #define ND_coord(n) (((Agnodeinfo_t*)AGDATA(n))->coord)
