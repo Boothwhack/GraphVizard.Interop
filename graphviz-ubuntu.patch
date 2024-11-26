@@ -1,0 +1,13 @@
+diff --git a/tclpkg/gv/gv.cpp b/tclpkg/gv/gv.cpp
+index 5f6d03f69..4835e48c1 100644
+--- a/tclpkg/gv/gv.cpp
++++ b/tclpkg/gv/gv.cpp
+@@ -156,7 +156,7 @@ char *setv(Agraph_t *g, char *attr, char *val) {
+     return nullptr;
+   Agsym_t *a = agfindattr(agroot(g), attr);
+   if (!a)
+-    a = agraphattr(g->root, attr, emptystring);
++    a = agraphattr(agroot(g), attr, emptystring);
+   myagxset(g, a, val);
+   return val;
+ }

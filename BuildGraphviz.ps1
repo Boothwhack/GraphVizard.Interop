@@ -11,8 +11,8 @@ Set-ExecutionPolicy Bypass -Force -Scope Process
 . $SourceDir\windows\bin\setup-build-utilities.ps1
 
 pushd "$SourceDir"
-# Apply patch to generate CSharp code in GraphVizard.Interop namespace
-git apply ..\graphviz-namespace.patch
+# Apply patches
+git apply ..\*.patch
 popd
 
 # Configure Graphviz build
