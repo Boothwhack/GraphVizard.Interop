@@ -12,7 +12,7 @@ Set-ExecutionPolicy Bypass -Force -Scope Process
 
 pushd "$SourceDir"
 # Apply patches
-git apply ..\*.patch
+git apply ( Get-Item ..\*.patch )
 popd
 
 # Configure Graphviz build
