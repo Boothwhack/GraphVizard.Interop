@@ -5,3 +5,4 @@ pkg/
 riderModule.iml
 /_ReSharper.Caches/
 .idea
+dist
