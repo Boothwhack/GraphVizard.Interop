@@ -1,0 +1,18 @@
+diff --git a/tclpkg/gv/gv.i b/tclpkg/gv/gv.i
+index ae20b5d3e..10c31a000 100644
+--- a/tclpkg/gv/gv.i
++++ b/tclpkg/gv/gv.i
+@@ -231,3 +231,13 @@ extern bool tred(Agraph_t *g);
+ 
+ %}
+ 
++%typemap(csinterfaces) SWIGTYPE* "System.IEquatable<$csclassname>"
++%typemap(cscode) SWIGTYPE* "
++  public override bool Equals(object obj) => obj is $csclassname handle ? this.Equals(handle) : false;
++
++  public bool Equals($csclassname other) {
++    return $csclassname.getCPtr(this).Handle == $csclassname.getCPtr(other).Handle;
++  }
++  
++  public override int GetHashCode() => $csclassname.getCPtr(this).Handle.GetHashCode();
++"
