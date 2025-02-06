@@ -60,6 +60,7 @@ jobs:
     name: Publishes package to NuGet Gallery
     runs-on: ubuntu-22.04
     needs: build-package
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/setup-dotnet@v4
         with:
