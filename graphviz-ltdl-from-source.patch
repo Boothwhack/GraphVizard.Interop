@@ -1,0 +1,24 @@
+diff --git a/cmake/FindLTDL.cmake b/cmake/FindLTDL.cmake
+index e74d23f52..58b7a02ba 100644
+--- a/cmake/FindLTDL.cmake
++++ b/cmake/FindLTDL.cmake
+@@ -1,4 +1,18 @@
+-if(NOT WIN32 OR MINGW)
++if(UNIX AND LIBTOOL_SOURCE_DIR)
++  include(ExternalProject)
++  ExternalProject_Add(libtool
++    SOURCE_DIR ${LIBTOOL_SOURCE_DIR}
++    BUILD_IN_SOURCE 1
++    
++    CONFIGURE_COMMAND ${LIBTOOL_SOURCE_DIR}/bootstrap
++    COMMAND ${LIBTOOL_SOURCE_DIR}/configure
++    INSTALL_COMMAND make install prefix=<INSTALL_DIR>
++  )
++  set(LTDL_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/libtool-prefix/include)
++  set(LTDL_LIBRARY ${CMAKE_CURRENT_BINARY_DIR}/libtool-prefix/lib/libltdl.so)
++  
++  install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/libtool-prefix/lib/ TYPE LIB FILES_MATCHING PATTERN "*.so*")
++elseif(NOT WIN32 OR MINGW)
+   find_path(LTDL_INCLUDE_DIR ltdl.h)
+   find_library(LTDL_LIBRARY NAMES ltdl)
+ else()
