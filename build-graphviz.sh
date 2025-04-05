@@ -11,7 +11,7 @@ output_lib_dir="$output_dir/lib"
 
 # Apply patches
 pushd "$source_dir"
-git apply ../*.patch || true
+git apply ../*.patch
 popd
 
 # Configure Graphviz build
