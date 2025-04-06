@@ -1,17 +1,17 @@
 diff --git a/cmake/FindLTDL.cmake b/cmake/FindLTDL.cmake
-index e74d23f52..58b7a02ba 100644
+index e74d23f52..c1ab75303 100644
 --- a/cmake/FindLTDL.cmake
 +++ b/cmake/FindLTDL.cmake
 @@ -1,4 +1,18 @@
 -if(NOT WIN32 OR MINGW)
-+if(UNIX AND LIBTOOL_SOURCE_DIR)
++if(UNIX)
 +  include(ExternalProject)
 +  ExternalProject_Add(libtool
-+    SOURCE_DIR ${LIBTOOL_SOURCE_DIR}
++    URL https://ftpmirror.gnu.org/libtool/libtool-2.5.4.tar.gz
++    URL_HASH SHA256=da8ebb2ce4dcf46b90098daf962cffa68f4b4f62ea60f798d0ef12929ede6adf
 +    BUILD_IN_SOURCE 1
 +    
-+    CONFIGURE_COMMAND ${LIBTOOL_SOURCE_DIR}/bootstrap
-+    COMMAND ${LIBTOOL_SOURCE_DIR}/configure
++    CONFIGURE_COMMAND <SOURCE_DIR>/configure
 +    INSTALL_COMMAND make install prefix=<INSTALL_DIR>
 +  )
 +  set(LTDL_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/libtool-prefix/include)
