@@ -1,8 +1,5 @@
 name: Build and publish package
-on:
-  push:
-    branches:
-      - main
+on: push
 
 jobs:
   build-graphviz-linux64:
@@ -19,6 +16,7 @@ jobs:
         with:
           name: graphviz-linux-x64
           path: dist
+
   build-graphviz-win64:
     name: Build GraphViz for Windows x64
     runs-on: windows-2022
@@ -35,7 +33,7 @@ jobs:
           name: graphviz-windows-x64
           path: dist
   
-  publish-package:
+  build-package:
     name: Build and publishes NuGet package
     runs-on: ubuntu-22.04
     needs: 
@@ -57,6 +55,19 @@ jobs:
         with:
           name: pkg
           path: pkg
+
+  publish-package:
+    name: Publishes package to NuGet Gallery
+    runs-on: ubuntu-22.04
+    needs: build-package
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - uses: actions/download-artifact@v4
+        with:
+          name: pkg
       - env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: dotnet nuget push pkg/GraphVizard.Interop*.nupkg --api-key ${NUGET_API_KEY} --source https://api.nuget.org/v3/index.json
