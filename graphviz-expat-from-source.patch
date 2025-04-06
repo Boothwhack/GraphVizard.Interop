@@ -1,0 +1,29 @@
+diff --git a/cmake/FindEXPAT.cmake b/cmake/FindEXPAT.cmake
+new file mode 100644
+index 000000000..ab10dbf1e
+--- /dev/null
++++ b/cmake/FindEXPAT.cmake
+@@ -0,0 +1,23 @@
++if (UNIX)
++  # download and extract latest libexpat sources
++  include(ExternalProject)
++  ExternalProject_Add(expat
++    URL https://github.com/libexpat/libexpat/releases/download/R_2_7_1/expat-2.7.1.tar.gz
++    URL_HASH SHA256=0cce2e6e69b327fc607b8ff264f4b66bdf71ead55a87ffd5f3143f535f15cfa2
++    
++    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=<INSTALL_DIR>
++  )
++  ExternalProject_Get_Property(expat INSTALL_DIR)
++  
++  set(EXPAT_INCLUDE_DIR ${INSTALL_DIR}/include)
++  set(EXPAT_LIBRARIES ${INSTALL_DIR}/lib/libexpat.so)
++  mark_as_advanced(LTDL_INCLUDE_DIR EXPAT_LIBRARIES)
++
++  install(DIRECTORY ${INSTALL_DIR}/lib/ TYPE LIB FILES_MATCHING PATTERN "*.so*")
++
++  include(FindPackageHandleStandardArgs)
++  find_package_handle_standard_args(EXPAT DEFAULT_MSG EXPAT_LIBRARIES EXPAT_INCLUDE_DIR)
++else()
++  # fall back to system packages
++  find_package(EXPAT NO_CMAKE_PATH)
++endif()

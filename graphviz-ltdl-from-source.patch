@@ -1,23 +1,26 @@
 diff --git a/cmake/FindLTDL.cmake b/cmake/FindLTDL.cmake
-index e74d23f52..c1ab75303 100644
+index e74d23f52..625a5b790 100644
 --- a/cmake/FindLTDL.cmake
 +++ b/cmake/FindLTDL.cmake
-@@ -1,4 +1,18 @@
+@@ -1,4 +1,21 @@
 -if(NOT WIN32 OR MINGW)
 +if(UNIX)
 +  include(ExternalProject)
 +  ExternalProject_Add(libtool
 +    URL https://ftpmirror.gnu.org/libtool/libtool-2.5.4.tar.gz
 +    URL_HASH SHA256=da8ebb2ce4dcf46b90098daf962cffa68f4b4f62ea60f798d0ef12929ede6adf
++    
 +    BUILD_IN_SOURCE 1
 +    
 +    CONFIGURE_COMMAND <SOURCE_DIR>/configure
 +    INSTALL_COMMAND make install prefix=<INSTALL_DIR>
 +  )
-+  set(LTDL_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/libtool-prefix/include)
-+  set(LTDL_LIBRARY ${CMAKE_CURRENT_BINARY_DIR}/libtool-prefix/lib/libltdl.so)
++  ExternalProject_Get_Property(libtool INSTALL_DIR)
++
++  set(LTDL_INCLUDE_DIR ${INSTALL_DIR}/include)
++  set(LTDL_LIBRARY ${INSTALL_DIR}/lib/libltdl.so)
 +  
-+  install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/libtool-prefix/lib/ TYPE LIB FILES_MATCHING PATTERN "*.so*")
++  install(DIRECTORY ${INSTALL_DIR}/lib/ TYPE LIB FILES_MATCHING PATTERN "*.so*")
 +elseif(NOT WIN32 OR MINGW)
    find_path(LTDL_INCLUDE_DIR ltdl.h)
    find_library(LTDL_LIBRARY NAMES ltdl)
