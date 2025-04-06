@@ -1,3 +1,6 @@
 [submodule "graphviz"]
 	path = graphviz
 	url = https://gitlab.com/graphviz/graphviz.git
+[submodule "libtool"]
+	path = libtool
+	url = git://git.savannah.gnu.org/libtool.git
