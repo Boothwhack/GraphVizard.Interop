@@ -1,5 +1,5 @@
 diff --git a/tclpkg/gv/gv.cpp b/tclpkg/gv/gv.cpp
-index 5f6d03f69..6bedcf35e 100644
+index 5f6d03f69..4222e829f 100644
 --- a/tclpkg/gv/gv.cpp
 +++ b/tclpkg/gv/gv.cpp
 @@ -156,7 +156,7 @@ char *setv(Agraph_t *g, char *attr, char *val) {
@@ -11,15 +11,18 @@ index 5f6d03f69..6bedcf35e 100644
    myagxset(g, a, val);
    return val;
  }
-@@ -303,7 +303,10 @@ Agnode_t *tailof(Agedge_t *e) {
+@@ -303,9 +303,12 @@ Agnode_t *tailof(Agedge_t *e) {
  }
  
  Agraph_t *graphof(Agraph_t *g) {
 -  if (!g || g == g->root)
 +  if (!g)
-+    return nullptr;
+     return nullptr;
+-  return agroot(g);
 +  Agraph_t *root = agroot(g);
 +  if (g == root)
-     return nullptr;
-   return root;
++    return nullptr;
++  return root;
  }
+ 
+ Agraph_t *graphof(Agedge_t *e) {
