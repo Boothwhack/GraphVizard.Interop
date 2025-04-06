@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: "true"
+          submodules: "recursive"
       - run: sudo apt update && sudo apt install -y swig libgtk-3-dev libpoppler-dev libpoppler-glib-dev librsvg2-dev libwebp-dev libgts-dev libgs-dev libgd-dev liblasi-dev libdevil-dev libann-dev
       - name: Build GraphViz library 
         run: ./build-graphviz.sh
