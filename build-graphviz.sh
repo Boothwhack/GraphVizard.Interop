@@ -8,6 +8,7 @@ prefix_dir="$source_dir/install"
 output_dir="$PWD/dist"
 output_src_dir="$output_dir/gen"
 output_lib_dir="$output_dir/lib"
+libtool_source_dir="$PWD/libtool"
 
 # Apply patches
 pushd "$source_dir"
@@ -16,6 +17,7 @@ popd
 
 # Configure Graphviz build
 cmake -S "$source_dir" -B "$build_dir" \
+  -DLIBTOOL_SOURCE_DIR="${libtool_source_dir}" \
   -DENABLE_SWIG=ON \
   -DENABLE_SHARP=ON \
   -DWITH_SMYRNA=OFF \
