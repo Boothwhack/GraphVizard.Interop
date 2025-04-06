@@ -4,3 +4,4 @@
 [submodule "libtool"]
 	path = libtool
 	url = git://git.savannah.gnu.org/libtool.git
+	branch = master
